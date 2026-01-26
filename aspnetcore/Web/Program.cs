@@ -2,7 +2,8 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
 using NSwag;
-
+using Web.Abstractions;
+using Web.services;
 
 var builder = WebApplication.CreateBuilder(args);
 Env.Load();
@@ -11,9 +12,9 @@ var connectionString = @"Host=" + Environment.GetEnvironmentVariable("POSTGRES_H
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-// https://aka.ms/aspnet/openapi
-builder.Services.AddControllers();
 
+builder.Services.AddControllers();
+builder.Services.AddScoped<IListingService, ListingService>();
 
 var app = builder.Build();
 

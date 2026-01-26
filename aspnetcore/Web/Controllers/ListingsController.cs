@@ -1,6 +1,7 @@
 using System.Runtime.Versioning;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Web.Abstractions;
 
 namespace Web.Controllers
 {
@@ -8,18 +9,13 @@ namespace Web.Controllers
     [ApiController]
     public class ListingsController : ControllerBase
     {
-        
+        private readonly IListingService listingService;
+
         [HttpGet]
         [Route("/")]
         public IActionResult GetListings()
         {
-            // Sample data - in a real application, this would come from a database or service
-            var listings = new[]
-            {
-                new { Id = 1, Title = "Listing 1", Description = "Description for Listing 1" },
-                new { Id = 2, Title = "Listing 2", Description = "Description for Listing 2" },
-                new { Id = 3, Title = "Listing 3", Description = "Description for Listing 3" }
-            };
+            var listings = listingService.GetListings;
 
             return Ok(listings);
         }

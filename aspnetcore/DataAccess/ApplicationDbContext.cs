@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-
+using Domain.Entities;
 public class ApplicationDbContext : DbContext
 {
-      public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
         
     }
+    public DbSet<ListingEntity> ListingEntities { get; set; } = null!;
 }

@@ -10,12 +10,16 @@ namespace Web.Controllers
     public class ListingsController : ControllerBase
     {
         private readonly IListingService listingService;
+        public ListingsController(IListingService listingService)
+        {
+            this.listingService = listingService;
+        }
 
         [HttpGet]
         [Route("/")]
-        public IActionResult GetListings()
+        public async Task<IActionResult> GetListings()
         {
-            var listings = listingService.GetListings;
+            var listings = await listingService.GetListings();
 
             return Ok(listings);
         }

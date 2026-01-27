@@ -6,9 +6,8 @@ using Web.Abstractions;
 using Web.services;
 
 var builder = WebApplication.CreateBuilder(args);
-Env.Load();
 
-var connectionString = @"Host=" + Environment.GetEnvironmentVariable("POSTGRES_HOST") + ";Username=" + Environment.GetEnvironmentVariable("POSTGRES_USER") + ";Password=" + Environment.GetEnvironmentVariable("POSTGRES_PASSWORD") + ";Database=" + Environment.GetEnvironmentVariable("POSTGRES_DB");
+var connectionString = "Host=database;Port=5432;Database=postgres;Username=user;Password=secure_arbitary_string";
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
 

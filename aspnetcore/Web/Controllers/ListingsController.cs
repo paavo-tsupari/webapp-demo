@@ -16,7 +16,6 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [Route("/")]
         public async Task<IActionResult> GetListings()
         {
             var listings = await listingService.GetListings();

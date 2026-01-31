@@ -5,8 +5,14 @@ services:
       - ./aspnetcore/.env
     ports: 
       - 5432:5432
-    volumes:
-      - postgres_data:/var/lib/postgresql/data  backend:
+    tmpfs:
+      - /var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U user -d postgres"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  backend:
     build:
       context: ./aspnetcore
       dockerfile: Dockerfile
@@ -15,6 +21,7 @@ services:
     env_file: 
       - ./aspnetcore/.env
     command: ["dotnet", "Web.dll"]
+    depends_on:
+      database:
+        condition: service_healthy
 
-volumes:
-  postgres_data: 

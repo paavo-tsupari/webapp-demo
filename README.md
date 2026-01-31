@@ -30,3 +30,8 @@ dotnet build
 dotnet run
 ```
 
+Run migrations
+
+````bash
+dotnet ef migrations add InitialCreate
+````

@@ -12,7 +12,7 @@ ReactUI/.tanstack
 
 obj/
 bin/
-
+bin\Debug
 *.nuget.dgspec.json
 *.nuget.props
 *.nuget.targets

@@ -2,6 +2,7 @@ using System.Runtime.Versioning;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Web.Abstractions;
+using Domain.Entities;
 
 namespace Web.Controllers
 {
@@ -21,6 +22,13 @@ namespace Web.Controllers
             var listings = await listingService.GetListings();
 
             return Ok(listings);
+        }
+        [HttpPost]
+        
+        public async Task<IActionResult> AddListing(ListingEntity listing)
+        {
+            await listingService.AddListings(listing);
+            return Ok();
         }
     }
 }

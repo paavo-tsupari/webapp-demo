@@ -6,5 +6,5 @@ using Microsoft.AspNetCore.Mvc;
 public interface IListingService
 {
     Task<List<ListingEntity>> GetListings();
-    Task<List<ListingEntity>> SetListings();
+    Task<ListingEntity> AddListings(ListingEntity listing);
 }

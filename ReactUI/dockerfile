@@ -1,0 +1,15 @@
+FROM node:20-alpine as builder
+
+WORKDIR /app
+
+COPY public ./public
+COPY src ./src
+COPY package.json .
+COPY vite.config.ts .
+COPY tsconfig.json .
+COPY index.html . 
+COPY pnpm-lock.yaml .
+
+RUN corepack enable pnpm && pnpm install 
+
+EXPOSE 3000

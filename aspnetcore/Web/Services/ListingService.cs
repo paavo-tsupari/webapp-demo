@@ -11,13 +11,17 @@ public class ListingService : IListingService
     {
         _context = context;
     }
+
     public async Task<List<ListingEntity>> GetListings()
     {
         return await _context.ListingEntities.ToListAsync();
     }
-    public  Task<List<ListingEntity>> SetListings()
+
+    public async Task<ListingEntity> AddListings(ListingEntity listing)
     {
-        return null;
+        _context.ListingEntities.Add(listing);
+        await _context.SaveChangesAsync();
+        return listing;
     }
 
 }
